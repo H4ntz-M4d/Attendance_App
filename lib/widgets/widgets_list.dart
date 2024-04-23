@@ -41,3 +41,70 @@ Widget buildEditImage(){
     ],
   );
 }
+
+Widget buildColumnProfil(String name, String phone){
+  return Column(children: [
+    const InputDecorator(
+      decoration: InputDecoration(
+        icon: Icon(Icons.assignment_ind),
+        labelText: 'NIP',
+        contentPadding: EdgeInsets.symmetric(vertical: 10)
+      ),
+      child: Text(
+        '2231750008',
+        style: TextStyle(
+          fontSize: 16.0,
+          color: Colors.black,
+        ),
+      ),
+    ),
+
+    const SizedBox(height: 35,),
+    InputDecorator(
+      decoration: const InputDecoration(
+        icon: Icon(Icons.person),
+        labelText: 'Nama',
+        contentPadding: EdgeInsets.symmetric(vertical: 10)
+      ),
+      child: Text(
+        name,
+        style: const TextStyle(
+          fontSize: 16.0,
+          color: Colors.black,
+        ),
+      ),
+    ),
+
+    const SizedBox(height: 35,),
+    const InputDecorator(
+      decoration: InputDecoration(
+        icon: Icon(Icons.assignment_ind),
+        labelText: 'Tempat/Tanggal Lahir',
+        contentPadding: EdgeInsets.symmetric(vertical: 10)
+      ),
+      child: Text(
+        '',
+        style: TextStyle(
+          fontSize: 16.0,
+          color: Colors.black,
+        ),
+      ),
+    ),
+
+    const SizedBox(height: 35,),
+    InputDecorator(
+      decoration: const InputDecoration(
+        icon: Icon(Icons.phone),
+        labelText: 'No. Handphone',
+        contentPadding: EdgeInsets.symmetric(vertical: 10)
+      ),
+      child: Text(
+        phone,
+        style: const TextStyle(
+          fontSize: 16.0,
+          color: Colors.black,
+        ),
+      ),
+  )]
+  );
+}
