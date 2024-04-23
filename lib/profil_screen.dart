@@ -1,6 +1,7 @@
+import 'package:attendance_app/edit_screen.dart';
+import 'package:attendance_app/models/profil_item.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:attendance_app/models/profil_item.dart';
 import 'package:attendance_app/widgets/widgets_list.dart';
 
 class ProfilLayout extends StatefulWidget{
@@ -12,9 +13,29 @@ class ProfilLayout extends StatefulWidget{
   }
 }
 
-class _ProfilLayout extends State<ProfilLayout>{
 
-  final _nameController = TextEditingController();
+class _ProfilLayout extends State<ProfilLayout>{
+  final List<ProfilItem> _editingProfil = [];
+
+  String name = ''; // Tambahkan variabel name
+  String phone = ''; // Tambahkan variabel phone
+
+  void _openEditOverlay() {
+    showModalBottomSheet(
+      context: context, 
+      builder: (ctx){
+        return EditScreen(editProfile: _editProfil);
+      }
+    );
+  }
+
+  void _editProfil(ProfilItem item){
+    setState(() {
+      _editingProfil.add(item);
+      name = item.name;
+      phone = item.noHp;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,29 +54,24 @@ class _ProfilLayout extends State<ProfilLayout>{
         ),
         backgroundColor: Colors.blue,
       ),
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.only(top: 40),
-          child: Column(
-            children: [
-              buildEditImage(),
-              const Column(children: [
-                InputDecorator(
-                  decoration: InputDecoration(
-                    labelText: 'NIM',
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20)
-                  ),
-                  child: Text(
-                    '123456',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.black,
-                    ),
-                  ),
-                )
+      body: SingleChildScrollView(
+        child: Center(
+          child: Container(
+            width: 300,
+            margin: const EdgeInsets.only(top: 40),
+            child: Column(
+              children: [
+                buildEditImage(),
+                const SizedBox(height: 35,),
+                
+                buildColumnProfil(name, phone),
+                const SizedBox(height: 20,),
 
-              ],)
-            ],
+                ElevatedButton(
+                  onPressed: _openEditOverlay, 
+                  child: const Text('Edit'))
+                ],
+            ),
           ),
         ),
       ),
