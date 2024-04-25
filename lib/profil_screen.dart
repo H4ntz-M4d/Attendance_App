@@ -1,4 +1,5 @@
-import 'package:attendance_app/edit_screen.dart';
+import 'package:attendance_app/widgets/edit_Photo.dart';
+import 'package:attendance_app/widgets/edit_screen.dart';
 import 'package:attendance_app/models/profil_item.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,12 +14,11 @@ class ProfilLayout extends StatefulWidget{
   }
 }
 
-
 class _ProfilLayout extends State<ProfilLayout>{
   final List<ProfilItem> _editingProfil = [];
 
-  String name = ''; // Tambahkan variabel name
-  String phone = ''; // Tambahkan variabel phone
+  String _alamat = ''; // Tambahkan variabel name
+  String _phone = ''; // Tambahkan variabel phone
 
   void _openEditOverlay() {
     showModalBottomSheet(
@@ -32,8 +32,8 @@ class _ProfilLayout extends State<ProfilLayout>{
   void _editProfil(ProfilItem item){
     setState(() {
       _editingProfil.add(item);
-      name = item.name;
-      phone = item.noHp;
+      _alamat = item.alamat;
+      _phone = item.noHp;
     });
   }
 
@@ -56,21 +56,24 @@ class _ProfilLayout extends State<ProfilLayout>{
       ),
       body: SingleChildScrollView(
         child: Center(
-          child: Container(
-            width: 300,
-            margin: const EdgeInsets.only(top: 40),
-            child: Column(
-              children: [
-                buildEditImage(),
-                const SizedBox(height: 35,),
-                
-                buildColumnProfil(name, phone),
-                const SizedBox(height: 20,),
-
-                ElevatedButton(
-                  onPressed: _openEditOverlay, 
-                  child: const Text('Edit'))
-                ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 25),
+            child: Container(
+              width: 300,
+              margin: const EdgeInsets.only(top: 10),
+              child: Column(
+                children: [
+                  const BuildEditImage(),
+                  const SizedBox(height: 35,),
+                  
+                  buildColumnProfil(_alamat, _phone),
+                  const SizedBox(height: 20,),
+            
+                  ElevatedButton(
+                    onPressed: _openEditOverlay, 
+                    child: const Text('Edit')),
+                  ],
+              ),
             ),
           ),
         ),
