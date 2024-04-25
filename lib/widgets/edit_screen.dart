@@ -15,32 +15,22 @@ class EditScreen extends StatefulWidget{
 
 class _EditScreenState extends State<EditScreen>{
 
-  String _name = '';
-  String _phone = '';
-  final _nameController = TextEditingController();
+  final _alamatController = TextEditingController();
   final _phoneController = TextEditingController();
 
   @override
   void dispose() {
-    _nameController.dispose();
+    _alamatController.dispose();
     _phoneController.dispose();
     super.dispose();
   }
 
-  void _updateProfile(String name, String phone){
-    setState(() {
-      _name = name;
-      _phone = phone;
-    });
-  }
-
   void _saveEditing(){
-    final newName = _nameController.text;
+    final newAlamat = _alamatController.text;
     final newPhone = _phoneController.text;
 
   // Panggil callback untuk mengirim nilai nama dan nomor telepon
-    widget.editProfile(ProfilItem(nim: '', name: newName, ttl: '', noHp: newPhone));
-    _updateProfile(newName, newPhone);
+    widget.editProfile(ProfilItem(alamat: newAlamat, noHp: newPhone));
   }
 
   @override
@@ -49,10 +39,10 @@ class _EditScreenState extends State<EditScreen>{
       margin: const EdgeInsets.only(top: 50, right: 40, left: 40),
       child: Column(children: [
         TextField(
-          controller: _nameController,
+          controller: _alamatController,
           maxLength: 50,
           decoration: const InputDecoration(
-            label: Text('Nama')
+            label: Text('Alamat')
           ),
         ),
       
