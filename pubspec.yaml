@@ -63,6 +63,8 @@ flutter:
   assets:
       - assets/download.jpeg
       - assets/art.png
+      - assets/Desain tanpa judul.png
+      - assets/logo.jpg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
