@@ -4,6 +4,23 @@ import 'package:attendance_app/models/profil_item.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:attendance_app/widgets/widgets_list.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+  Future<Map<String, dynamic>> fetchData() async{
+    final Response = await http.get(Uri.parse('http://localhost:3000/users'));
+    if(Response.statusCode == 200){
+      final List<dynamic> userList = jsonDecode(Response.body);
+      if (userList.isNotEmpty) {
+        // Jika ada data, ambil data pertama dari list
+        return userList[0];
+      }else{
+        throw Exception('No user data found');
+      }
+    } else{
+      throw Exception('Failded to load data');
+    }
+  }
 
 class ProfilLayout extends StatefulWidget{
   const ProfilLayout({super.key});
@@ -15,10 +32,19 @@ class ProfilLayout extends StatefulWidget{
 }
 
 class _ProfilLayout extends State<ProfilLayout>{
-  final List<ProfilItem> _editingProfil = [];
-
-  String _alamat = ''; // Tambahkan variabel name
+  String _address = ''; // Tambahkan variabel name
   String _phone = ''; // Tambahkan variabel phone
+
+  @override
+  void initState(){
+    super.initState();
+    fetchData().then((data){
+      setState(() {
+        _address = data['address'];
+        _phone = data['no_phone'];
+      });
+    });
+  }
 
   void _openEditOverlay() {
     showModalBottomSheet(
@@ -31,8 +57,7 @@ class _ProfilLayout extends State<ProfilLayout>{
 
   void _editProfil(ProfilItem item){
     setState(() {
-      _editingProfil.add(item);
-      _alamat = item.alamat;
+      _address = item.alamat;
       _phone = item.noHp;
     });
   }
@@ -66,7 +91,7 @@ class _ProfilLayout extends State<ProfilLayout>{
                   const BuildEditImage(),
                   const SizedBox(height: 35,),
                   
-                  buildColumnProfil(_alamat, _phone),
+                  buildColumnProfil(_address, _phone),
                   const SizedBox(height: 20,),
             
                   ElevatedButton(
