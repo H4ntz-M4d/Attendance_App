@@ -1,6 +1,7 @@
+
 import 'package:flutter/material.dart';
 
-Widget buildColumnProfil(String alamat, String phone){
+Widget buildColumnProfil(String address, String no_phone){
   return Column(children: [
     const InputDecorator(
       decoration: InputDecoration(
@@ -57,7 +58,7 @@ Widget buildColumnProfil(String alamat, String phone){
         contentPadding: EdgeInsets.symmetric(vertical: 10)
       ),
       child: Text(
-        alamat,
+        address,
         style: const TextStyle(
           fontSize: 16.0,
           color: Colors.black,
@@ -73,7 +74,7 @@ Widget buildColumnProfil(String alamat, String phone){
         contentPadding: EdgeInsets.symmetric(vertical: 10)
       ),
       child: Text(
-        phone,
+        no_phone,
         style: const TextStyle(
           fontSize: 16.0,
           color: Colors.black,
