@@ -1,4 +1,4 @@
-import 'package:attendance_app/widgets/edit_Photo.dart';
+import 'package:attendance_app/widgets/edit_photo.dart';
 import 'package:attendance_app/widgets/edit_screen.dart';
 import 'package:attendance_app/models/profil_item.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +8,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
   Future<Map<String, dynamic>> fetchData() async{
-    final Response = await http.get(Uri.parse('http://localhost:3000/users'));
-    if(Response.statusCode == 200){
-      final List<dynamic> userList = jsonDecode(Response.body);
+    final response = await http.get(Uri.parse('http://localhost:3000/users'));
+    if(response.statusCode == 200){
+      final List<dynamic> userList = jsonDecode(response.body);
       if (userList.isNotEmpty) {
         // Jika ada data, ambil data pertama dari list
         return userList[0];

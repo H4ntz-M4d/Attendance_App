@@ -1,4 +1,4 @@
-import 'package:attendance_app/profil_screen.dart';
+import 'package:attendance_app/Layout/profil_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
