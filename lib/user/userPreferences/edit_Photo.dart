@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'package:attendance_app/models/profil_item.dart';
+import 'package:attendance_app/user/model/profil_item.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -37,7 +37,7 @@ class _BuilEditImageState extends State<BuildEditImage>{
         ) :
       const CircleAvatar(
         radius: 70,
-        backgroundImage: AssetImage('assets/download.jpeg'),
+        backgroundImage: AssetImage('images/art.png'),
       ),
       Positioned(
         bottom: 0,

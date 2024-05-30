@@ -2,16 +2,9 @@ import 'package:image_picker/image_picker.dart';
 
 class ProfilItem{
   ProfilItem({
-    // required this.nim,
-    // required this.name,
-    // required this.ttl,
     required this.alamat,
     required this.noHp
   });
-
-  // final String nim;
-  // final String name;
-  // final String ttl;
   final String alamat;
   final String noHp;
 }
